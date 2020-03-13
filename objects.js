@@ -304,5 +304,133 @@ let b11 = new (function() {
     this.msg = 'Hello World'
 })()
 
-console.log('a11: ',a11)
-console.log('b11: ',b11)
+console.log('a11: ', a11)
+console.log('b11: ', b11)
+
+//---------
+
+/* -------------------------------------------------------------------------- */
+/*                                Object.create                               */
+/* -------------------------------------------------------------------------- */
+
+let vehicle = {
+    engine: 'petrol',
+    gearbox: 'automatic'
+}
+
+let car = Object.create(vehicle, {
+    mileage: {
+        value: 2000
+    }
+})
+let car2 = Object.create(vehicle, {
+    mileage: {
+        value: 2000, //prop value
+        enumerable: true, // work with for in
+        writable: true, // reset value
+        configurable: true // reset other attr. value and delete the prop
+    }
+})
+
+car.brand = 'Toyota'
+car.model = 'Supra'
+
+console.log('car: ', car)
+
+for (const k in car) {
+    if (car.hasOwnProperty(k)) {
+        const element = car[k]
+        console.log('hasOwnProperty: ', element)
+    }
+    console.log('car[k]: ', car[k])
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             descriptor of value                            */
+/* -------------------------------------------------------------------------- */
+
+console.log(
+    'Object.getOwnPropertyDescriptor(car,brand): ',
+    Object.getOwnPropertyDescriptor(car, 'brand')
+)
+console.log(
+    'Object.getOwnPropertyDescriptor(car,mileage): ',
+    Object.getOwnPropertyDescriptor(car, 'mileage')
+)
+
+console.log(
+    'Object.getOwnPropertyDescriptors(car): ',
+    Object.getOwnPropertyDescriptors(car)
+)
+
+/* -------------------------------------------------------------------------- */
+/*                                add property                                */
+/* -------------------------------------------------------------------------- */
+
+let car3 = {
+    brand: 'Toyota',
+    model: 'Supra'
+}
+
+Object.defineProperty(car3, 'mileage', {
+    value: 2000,
+    enumerable: true
+})
+
+console.log(
+    'Object.getOwnPropertyDescriptors(car3): ',
+    Object.getOwnPropertyDescriptors(car3)
+)
+
+Object.defineProperties(car3, {
+    color: {
+        value: 'black'
+    },
+    location: {
+        value: 'newcastle'
+    }
+})
+console.log(
+    'Object.getOwnPropertyDescriptors(car3): ',
+    Object.getOwnPropertyDescriptors(car3)
+)
+
+/* -------------------------------------------------------------------------- */
+/*                          object prevent extention                          */
+/* -------------------------------------------------------------------------- */
+
+let car4 = {
+    brand: 'Toyota',
+    model: 'Supra'
+}
+let car5 = Object.create(car4)
+
+car5.engine = 'petrol'
+
+Object.defineProperties(car5, {
+    gearbox: {
+        value: 'manual',
+        enumerable: false,
+        writable: true,
+        configurable: true
+    }
+})
+
+/* ---------------------------- preventExtensions --------------------------- */
+
+Object.preventExtensions(car5) // stop an object to any receive property but
+// we can add that to his parent and it would exists inside __proto__
+// and in this method we also can remove properties
+// and change their configs and their value
+car5.newProperty = 'newtext'
+console.log('car5.newProperty', car5.newProperty)
+
+/* ---------------------------------- seal ---------------------------------- */
+
+Object.seal(car5) // for prevent remove values but we can change the values
+console.log('Object.isSealed(car5)', Object.isSealed(car5)) //we can check it if it sealed or not
+
+/* --------------------------------- freeze --------------------------------- */
+
+Object.freeze(car5) // in this we cannot do any thing
+console.log('Object.isFrozen(car5)', Object.isFrozen(car5)) //we can check it if it frozen or not
