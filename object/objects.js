@@ -206,7 +206,10 @@ myFactory.prototype = { p1: 10 }
 
 const test1 = new myFactory()
 
-console.log(test1)
+console.log('======prototype======')
+console.log('test1: ',test1)
+console.log('test1.p1: ',test1.p1)
+console.log('OBJECT.GETPROTOTYPEOF: ',Object.getPrototypeOf(test1))
 
 /* -------------------------------------------------------------------------- */
 /*                             object constructure                            */
@@ -305,6 +308,7 @@ let b11 = new (function() {
 })()
 
 console.log('a11: ', a11)
+console.log('a11.msg: ', a11.msg)
 console.log('b11: ', b11)
 
 //---------
@@ -396,7 +400,7 @@ console.log(
 )
 
 /* -------------------------------------------------------------------------- */
-/*                          object prevent extention                          */
+/*                          object prevent extension                          */
 /* -------------------------------------------------------------------------- */
 
 let car4 = {
