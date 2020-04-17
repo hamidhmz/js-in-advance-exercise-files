@@ -44,7 +44,7 @@ function my_constructor(arg1,arg2) {
     this.prop1 = arg1
     this.prop2 = arg2
 }
-let obj_con = Reflect.construct(my_constructor,['one','two'])
+let obj_con = Reflect.construct(my_constructor,['one','two'])//alternative to new an function 
 
 console.log('Object.getOwnPropertyNames(obj_con)')
 console.log(Object.getOwnPropertyNames(obj_con))

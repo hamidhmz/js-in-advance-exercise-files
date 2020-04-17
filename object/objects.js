@@ -42,8 +42,7 @@ console.log(
         }
     )
 )
-console.log(
-    Object.create(students, {
+    const eee = Object.create(students, {
         id: {
             value: 1,
             enumerable: true // writable:false, configurable(deletable):false by default
@@ -53,7 +52,8 @@ console.log(
             enumerable: true
         }
     })
-)
+    console.log('eee',eee)
+    console.log('eee',Object.getOwnPropertyNames(eee))
 const objNew = Object.create(
     {},
     {
@@ -298,7 +298,7 @@ Object.assign(rc, { name: 'TOM' }) // this will ignore inherited property
 console.log('rc: ', rc)
 
 /****************************************************************************
- * DIFFERENT BETWEEN NEW SELF DEFINE CONSTRUCTUR FUNCTION AND OBJECT.CREATE *
+ * DIFFERENT BETWEEN NEW SELF DEFINE CONSTRUCTOR FUNCTION AND OBJECT.CREATE *
  ****************************************************************************/
 
 let a11 = Object.create({ msg: 'Hello World' })
