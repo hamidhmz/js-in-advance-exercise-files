@@ -106,3 +106,8 @@ console.log(
     'Object.prototype.toString.call(hello): ',
     Object.prototype.toString.call('hello')
 );
+
+console.log(
+    'Object.prototype.toString.call(new Date()): ',
+    Object.prototype.toString.call(new Date())
+);
