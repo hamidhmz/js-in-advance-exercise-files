@@ -30,6 +30,7 @@ for (const iterator of set) {
     console.log('iterator: ',iterator)
 }
 
+const arrayFromSet = Array.from(set)
 
 
 set.clear()
